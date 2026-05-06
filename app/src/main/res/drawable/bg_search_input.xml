@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- সার্চ বক্সের ভেতরের হালকা ব্যাকগ্রাউন্ড কালার -->
+    <solid android:color="#F3F4F6" />
+
+    <!-- কোণাগুলো রাউন্ড করার জন্য (Corner radius) -->
+    <corners android:radius="12dp" />
+
+    <!-- হালকা বর্ডার বা স্ট্রোক -->
+    <stroke
+        android:width="1dp"
+        android:color="#E5E7EB" />
+</shape>

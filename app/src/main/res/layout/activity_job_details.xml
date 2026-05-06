@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#F5F7FA"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Scroll Content -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/applyBtn"
+        android:padding="16dp">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <!-- Top Bar -->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/backBtn"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:src="@drawable/ic_back"
+                    app:tint="#1F2937"
+                    android:contentDescription="Back"/>
+
+                <ImageView
+                    android:id="@+id/bookmarkBtn"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:layout_alignParentEnd="true"
+                    android:src="@drawable/ic_bookmark"
+                    app:tint="#1F2937"
+                    android:contentDescription="Bookmark"/>
+            </RelativeLayout>
+
+            <!-- Logo -->
+            <TextView
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:gravity="center"
+                android:text="PA"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold"
+                android:textSize="18sp"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:background="@drawable/logo_bg"/>
+
+            <!-- Job Title -->
+            <TextView
+                android:text="Mobile App Developer Intern"
+                android:textColor="#111827"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_marginTop="12dp"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:text="Pathao"
+                android:textColor="#2DAAE1"
+                android:textSize="14sp"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <!-- Tags -->
+            <LinearLayout
+                android:layout_marginTop="10dp"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView style="@style/tagGray" android:text="onsite"/>
+                <TextView style="@style/tagOrange" android:text="Intermediate"/>
+                <TextView style="@style/tagGray" android:text="4 months"/>
+            </LinearLayout>
+
+            <!-- Match Card -->
+            <LinearLayout
+                android:layout_marginTop="16dp"
+                android:orientation="vertical"
+                android:padding="16dp"
+                android:background="@drawable/card_bg"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="150dp"
+                    android:layout_height="30dp"
+                    android:text="MATCH SCORE"
+                    android:textColor="#9CA3AF"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:layout_width="71dp"
+                    android:layout_height="wrap_content"
+                    android:text="50%"
+                    android:textColor="#F59E0B"
+                    android:textSize="28sp"
+                    android:textStyle="bold" />
+
+                <ProgressBar
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:progress="50"
+                    android:progressTint="#F59E0B" />
+
+                <TextView
+                    android:layout_width="96dp"
+                    android:layout_height="25dp"
+                    android:text="Good match"
+                    android:textColor="#6B7280"
+                    android:textSize="15sp" />
+            </LinearLayout>
+
+            <!-- Skills -->
+            <TextView
+                android:layout_width="231dp"
+                android:layout_height="35dp"
+                android:layout_marginTop="12dp"
+                android:text="Skills to develop:"
+                android:textColor="#6B7280"
+                android:textSize="18sp" />
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView style="@style/tagOrange" android:text="React Native"/>
+                <TextView style="@style/tagOrange" android:text="REST APIs"/>
+            </LinearLayout>
+
+            <!-- Job Details -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="236dp"
+                android:layout_marginTop="16dp"
+                android:orientation="vertical">
+
+                <!-- Row -->
+                <include layout="@layout/item_detail" />
+
+                <include layout="@layout/item_detail2" />
+
+                <include layout="@layout/item_detail3" />
+
+                <include layout="@layout/item_detail4" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- Bottom Button -->
+    <Button
+        android:id="@+id/applyBtn"
+        android:text="Apply on Bdjobs"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        android:gravity="center"
+        android:background="@drawable/button_bg"
+        android:layout_margin="16dp"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"/>
+
+</RelativeLayout>

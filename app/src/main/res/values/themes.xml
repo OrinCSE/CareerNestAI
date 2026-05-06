@@ -1,0 +1,11 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <style name="Base.Theme.CareerNestR" parent="Theme.Material3.DayNight.NoActionBar">
+    </style>
+
+    <style name="Theme.CareerNestR" parent="Base.Theme.CareerNestR" />
+
+    <style name="CircleImage">
+        <item name="cornerSize">50%</item>
+    </style>
+
+</resources>

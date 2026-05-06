@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">CareerNestR</string>
+    <string name="hello_text">Hello</string>
+    <string name="my_profile">My Profile</string>
+</resources>
