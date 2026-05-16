@@ -1,70 +1,119 @@
 package com.project.careernestr;
 
-import android.os.Bundle;
-import android.widget.Button;
-import android.widget.LinearLayout;
-import android.widget.Toast;
-import android.widget.ImageView;
 import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.core.view.GravityCompat;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
 import java.util.List;
+import androidx.activity.OnBackPressedCallback;
 
 public class Activity_dashboard extends AppCompatActivity {
 
-    LinearLayout uploadBtn;
-    Button applyBtn;
     BottomNavigationView bottomNav;
-
     ImageView profileBtn, menuBtn;
     DrawerLayout drawerLayout;
+    TextView tvSeeAll;
+
+    CardView cardDataScience, cardDigitalMarketing, cardSoftwareEngineer;
+    RelativeLayout uploadBtn;
+    android.widget.Button applyBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
 
+        // Initialize views
+        drawerLayout = findViewById(R.id.drawer_layout);
         uploadBtn = findViewById(R.id.uploadBtn);
         applyBtn = findViewById(R.id.applyBtn);
         bottomNav = findViewById(R.id.bottomNav);
+        tvSeeAll = findViewById(R.id.tvSeeAll);
 
-        // ✅ New Added Views
-        profileBtn = findViewById(R.id.profile_image);
-        menuBtn = findViewById(R.id.menu_icon);
-        drawerLayout = findViewById(R.id.drawer_layout);
+        cardDataScience = findViewById(R.id.cardDataScience);
+        cardDigitalMarketing = findViewById(R.id.cardDigitalMarketing);
+        cardSoftwareEngineer = findViewById(R.id.cardSoftwareEngineer);
 
-        // ✅ Go to Profile
-        profileBtn.setOnClickListener(v -> {
-            Intent intent = new Intent(activity_dashboard.this, ProfileActivity.class);
-            startActivity(intent);
-        });
+        // Header view
+        View headerView = findViewById(R.id.layoutHeaderTop);
+        if (headerView != null) {
+            profileBtn = headerView.findViewById(R.id.profile_image);
+            menuBtn = headerView.findViewById(R.id.menu_icon);
+        }
 
-        // ✅ Open Drawer
-        menuBtn.setOnClickListener(v -> {
-            if (drawerLayout != null && !drawerLayout.isDrawerOpen(GravityCompat.END)) {
-                drawerLayout.openDrawer(GravityCompat.END);
-            }
-        });
+        // Profile click
+        if (profileBtn != null) {
+            profileBtn.setOnClickListener(v -> {
+                startActivity(new Intent(this, ProfileActivity.class));
+                SupabaseHelper.insertUser(
+                        "Orin",
+                        "orin@gmail.com"
+                );
+            });
+        }
 
-        // Upload Resume Click
-        uploadBtn.setOnClickListener(view ->
-                Toast.makeText(Activity_dashboard.this, "Upload Resume Clicked", Toast.LENGTH_SHORT).show()
-        );
+        // Menu click
+        if (menuBtn != null) {
+            menuBtn.setOnClickListener(v -> {
+                if (drawerLayout != null) {
+                    drawerLayout.openDrawer(GravityCompat.START);
+                }
+            });
+        }
 
-        // Apply Button Click
-        applyBtn.setOnClickListener(view ->
-                Toast.makeText(Activity_dashboard.this, "Applied Successfully!", Toast.LENGTH_SHORT).show()
-        );
+        // See all click
+        if (tvSeeAll != null) {
+            tvSeeAll.setOnClickListener(v -> {
+                startActivity(new Intent(this, DeadlineRemindersActivity.class));
+            });
+        }
 
-        // RecyclerView Setup
+        // Card click safety
+        if (cardDataScience != null) {
+            cardDataScience.setOnClickListener(v ->
+                    Toast.makeText(this, "Opening Data Science Intern", Toast.LENGTH_SHORT).show()
+            );
+        }
+
+        if (cardDigitalMarketing != null) {
+            cardDigitalMarketing.setOnClickListener(v ->
+                    Toast.makeText(this, "Digital Marketing Intern", Toast.LENGTH_SHORT).show()
+            );
+        }
+
+        if (cardSoftwareEngineer != null) {
+            cardSoftwareEngineer.setOnClickListener(v ->
+                    Toast.makeText(this, "Software Engineer Intern", Toast.LENGTH_SHORT).show()
+            );
+        }
+
+        if (uploadBtn != null) {
+            uploadBtn.setOnClickListener(v ->
+                    Toast.makeText(this, "Upload Resume Clicked", Toast.LENGTH_SHORT).show()
+            );
+        }
+
+        if (applyBtn != null) {
+            applyBtn.setOnClickListener(v ->
+                    Toast.makeText(this, "Applied Successfully!", Toast.LENGTH_SHORT).show()
+            );
+        }
+
+        // RecyclerView setup
         RecyclerView recyclerView = findViewById(R.id.recyclerViewJobs);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
@@ -76,30 +125,55 @@ public class Activity_dashboard extends AppCompatActivity {
         JobAdapter adapter = new JobAdapter(this, jobList);
         recyclerView.setAdapter(adapter);
 
-        // Bottom Navigation Clicks
-        bottomNav.setOnItemSelectedListener(item -> {
+        // Bottom navigation
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNav);
 
-            if (item.getItemId() == R.id.nav_home) {
+// ড্যাশবোর্ডে থাকা অবস্থায় Home বাটনটি সিলেক্টেড দেখাবে
+        bottomNavigationView.setSelectedItemId(R.id.nav_home);
+
+        bottomNavigationView.setOnItemSelectedListener(item -> {
+            int id = item.getItemId();
+
+            if (id == R.id.nav_home) {
                 return true;
-
-            } else if (item.getItemId() == R.id.nav_browse) {
-                Toast.makeText(this, "Browse clicked", Toast.LENGTH_SHORT).show();
+            } else if (id == R.id.nav_browse) {
+                startActivity(new Intent(Activity_dashboard.this, BrowseActivity.class));
+                overridePendingTransition(0, 0); // পেজ চেঞ্জ হওয়ার সময় জিরকি অ্যানিমেশন বন্ধ করার জন্য
                 return true;
-
-            } else if (item.getItemId() == R.id.nav_cv) {
-                Toast.makeText(this, "My CV clicked", Toast.LENGTH_SHORT).show();
+            } else if (id == R.id.nav_cv) {
+                startActivity(new Intent(Activity_dashboard.this, MyCVActivity.class));
+                overridePendingTransition(0, 0);
                 return true;
-
-            } else if (item.getItemId() == R.id.nav_tracker) {
-                Toast.makeText(this, "Tracker clicked", Toast.LENGTH_SHORT).show();
+            } else if (id == R.id.nav_tracker) {
+                startActivity(new Intent(Activity_dashboard.this, TrackerActivity.class));
+                overridePendingTransition(0, 0);
                 return true;
-
-            } else if (item.getItemId() == R.id.nav_skills) {
-                Toast.makeText(this, "Skills clicked", Toast.LENGTH_SHORT).show();
+            } else if (id == R.id.nav_skills) {
+                startActivity(new Intent(Activity_dashboard.this, SkillsActivity.class));
+                overridePendingTransition(0, 0);
                 return true;
             }
-
             return false;
         });
+        getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+
+                if (drawerLayout != null && drawerLayout.isDrawerOpen(GravityCompat.START)) {
+                    drawerLayout.closeDrawer(GravityCompat.START);
+                } else {
+                    finish();
+                }
+            }
+        });
     }
+
+    // Navigation helper
+    private void navigateTo(Class<?> targetActivity) {
+        startActivity(new Intent(this, targetActivity));
+        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+    }
+
+    // Back press fix (Drawer handling)
+
 }

@@ -1,69 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="#F5F7FA"
-    android:padding="20dp">
+    android:background="#F5F7FA">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="AI Resume Analyzer"
-        android:textSize="28sp"
-        android:textStyle="bold"
-        android:textColor="#000000" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Upload your CV to get a score, skill extraction, and personalized job matches"
-        android:textSize="14sp"
-        android:textColor="#7A7A7A"
-        android:layout_marginTop="4dp" />
-
+    <!-- Main Content -->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="220dp"
-        android:layout_marginTop="30dp"
+        android:layout_height="match_parent"
+        android:layout_above="@id/bottomNav"
         android:orientation="vertical"
-        android:gravity="center"
-        android:background="@drawable/upload_box">
-
-
-        <ImageView
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:src="@android:drawable/ic_menu_upload"
-            app:tint="#4FA3FF" />
+        android:padding="20dp">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Upload Resume"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:layout_marginTop="10dp"
-            android:textColor="#000000"/>
+            android:text="AI Resume Analyzer"
+            android:textColor="#000000"
+            android:textSize="28sp"
+            android:textStyle="bold" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="PDF, DOC, or DOCX supported"
-            android:textSize="13sp"
+            android:layout_marginTop="4dp"
+            android:text="Upload your CV to get a score, skill extraction, and personalized job matches"
             android:textColor="#7A7A7A"
-            android:layout_marginTop="4dp"/>
+            android:textSize="14sp" />
 
-        <Button
-            android:id="@+id/uploadBtn"
-            android:layout_width="140dp"
-            android:layout_height="wrap_content"
-            android:text="Choose File"
-            android:layout_marginTop="14dp"
-            android:backgroundTint="#3DA5F5"
-            android:textColor="#FFFFFF"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="220dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/upload_box"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:src="@android:drawable/ic_menu_upload"
+                app:tint="#4FA3FF" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="Upload Resume"
+                android:textColor="#000000"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="PDF, DOC, or DOCX supported"
+                android:textColor="#7A7A7A"
+                android:textSize="13sp" />
+
+            <Button
+                android:id="@+id/uploadBtn"
+                android:layout_width="140dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="14dp"
+                android:backgroundTint="#3DA5F5"
+                android:text="Choose File"
+                android:textColor="#FFFFFF" />
+
+        </LinearLayout>
 
     </LinearLayout>
 
-</LinearLayout>
+    <!-- Bottom Navigation -->
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNav"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="#FFFFFF"
+        app:elevation="10dp"
+        app:labelVisibilityMode="labeled"
+        app:itemIconTint="@color/nav_item_color"
+        app:itemTextColor="@color/nav_item_color"
+        app:menu="@menu/bottom_nav_menu" />
+
+</RelativeLayout>

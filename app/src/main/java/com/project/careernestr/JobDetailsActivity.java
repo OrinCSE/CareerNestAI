@@ -23,15 +23,12 @@ public class JobDetailsActivity extends AppCompatActivity {
         backBtn = findViewById(R.id.backBtn);
         bookmarkBtn = findViewById(R.id.bookmarkBtn);
 
-        // 🔙 Back button
         backBtn.setOnClickListener(v -> finish());
 
-        // 🔖 Bookmark (optional)
         bookmarkBtn.setOnClickListener(v -> {
             // You can add save logic later
         });
 
-        // 🚀 Apply Button → Open Bdjobs
         applyBtn.setOnClickListener(v -> {
             Intent intent = new Intent(Intent.ACTION_VIEW);
             intent.setData(Uri.parse("https://www.bdjobs.com"));

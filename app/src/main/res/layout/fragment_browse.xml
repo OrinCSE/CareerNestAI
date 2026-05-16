@@ -1,178 +1,199 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
-    android:orientation="vertical">
+    android:background="#F8F8F8">
 
-    <!-- Header Section (বাকি সব কোড ঠিক আছে) -->
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="20dp">
-
-        <TextView
-            android:id="@+id/title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Browse Internships"
-            android:textColor="#0F172A"
-            android:textSize="21sp"
-            android:textStyle="bold" />
-
-        <LinearLayout
-            android:id="@+id/toggleContainer"
-            android:layout_width="wrap_content"
-            android:layout_height="36dp"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
-            android:background="@drawable/toggle_background"
-            android:orientation="horizontal"
-            android:padding="2dp">
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btnSmart"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:background="@android:color/transparent"
-                android:paddingHorizontal="16dp"
-                android:text="⚡ Smart"
-                android:textAllCaps="false"
-                android:textColor="#64748B"
-                android:textSize="12sp"
-                tools:ignore="TouchTargetSizeCheck" />
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btnAll"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:background="@drawable/selected_toggle_btn"
-                android:paddingHorizontal="16dp"
-                android:text="All"
-                android:textAllCaps="false"
-                android:textColor="@android:color/white"
-                android:textSize="12sp"
-                tools:ignore="TouchTargetSizeCheck" />
-        </LinearLayout>
-    </RelativeLayout>
-
-    <!-- Search Input -->
-    <EditText
-        android:id="@+id/searchBar"
-        android:layout_width="match_parent"
-        android:layout_height="54dp"
-        android:layout_marginHorizontal="20dp"
-        android:background="@drawable/bg_search_input"
-        android:drawableStart="@drawable/ic_search"
-        android:drawablePadding="12dp"
-        android:hint="Search roles, companies, skills..."
-        android:paddingStart="16dp"
-        android:textSize="14sp"
-        android:inputType="text"
-        android:importantForAutofill="no"/>
-
-    <!-- Floating Filter Section (এখানে ম্যাজিক করা হয়েছে) -->
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_marginTop="12dp">
-
-        <!-- চিপস স্ক্রল ভিউ -->
-        <HorizontalScrollView
-
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:scrollbars="none"
-            android:paddingEnd="60dp"
-            android:clipToPadding="false">
-
-            <com.google.android.material.chip.ChipGroup
-                android:id="@+id/filterChipGroup"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingStart="20dp"
-                app:singleLine="true"
-                app:singleSelection="true">
-
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chipAll"
-                    style="@style/Widget.MaterialComponents.Chip.Choice"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="All"
-                    android:textColor="@color/white"
-                    app:chipBackgroundColor="@color/blue_primary"
-                    app:chipCornerRadius="20dp"
-                    app:chipStrokeWidth="0dp" />
-
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chipSoftware"
-                    style="@style/Widget.MaterialComponents.Chip.Choice"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Software Engineering"
-                    android:textColor="#64748B"
-                    app:chipBackgroundColor="#F1F5F9"
-                    app:chipCornerRadius="20dp"
-                    app:chipStrokeWidth="0dp" />
-
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chipDataScience"
-                    style="@style/Widget.MaterialComponents.Chip.Choice"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Data Science"
-                    android:textColor="#64748B"
-                    app:chipBackgroundColor="#F1F5F9"
-                    app:chipCornerRadius="20dp"
-                    app:chipStrokeWidth="0dp" />
-
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chipDeveloper"
-                    style="@style/Widget.MaterialComponents.Chip.Choice"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Mobile Developer"
-                    android:textColor="#64748B"
-                    app:chipBackgroundColor="#F1F5F9"
-                    app:chipCornerRadius="20dp"
-                    app:chipStrokeWidth="0dp" />
-
-            </com.google.android.material.chip.ChipGroup>
-        </HorizontalScrollView>
-
-        <!-- ডান পাশের ফেডিং ইফেক্ট (Gradient) -->
-
-        <!-- ফিক্সড ফিল্টার আইকন -->
-        <View
-            android:layout_width="80dp"
-            android:layout_height="match_parent"
-            android:layout_gravity="end"
-            android:background="@drawable/white_fade_gradient" />
-
-        <ImageView
-            android:id="@+id/filterIcon"
-            android:layout_width="44dp"
-            android:layout_height="44dp"
-            android:layout_gravity="end|center_vertical"
-            android:layout_marginEnd="12dp"
-            android:background="@drawable/filter_icon_bg"
-            android:padding="10dp"
-            android:src="@drawable/ic_filter_list"
-            app:tint="@color/blue_primary"
-            android:elevation="4dp"
-            android:clickable="true"
-            android:focusable="true" />
-    </FrameLayout>
-
-    <!-- RecyclerView Section -->
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvInternships"
+    <!-- Main Content -->
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="8dp"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:listitem="@layout/item_job_card" />
+        android:layout_above="@id/bottomNav"
+        android:background="#FFFFFF"
+        android:orientation="vertical">
 
-</LinearLayout>
+        <!-- Header Section -->
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="20dp">
+
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Browse Internships"
+                android:textColor="#0F172A"
+                android:textSize="21sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:id="@+id/toggleContainer"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/toggle_background"
+                android:orientation="horizontal"
+                android:padding="2dp">
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnSmart"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:background="@android:color/transparent"
+                    android:paddingHorizontal="16dp"
+                    android:text="⚡ Smart"
+                    android:textAllCaps="false"
+                    android:textColor="#64748B"
+                    android:textSize="12sp"
+                    tools:ignore="TouchTargetSizeCheck" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnAll"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/selected_toggle_btn"
+                    android:paddingHorizontal="16dp"
+                    android:text="All"
+                    android:textAllCaps="false"
+                    android:textColor="@android:color/white"
+                    android:textSize="12sp"
+                    tools:ignore="TouchTargetSizeCheck" />
+            </LinearLayout>
+        </RelativeLayout>
+
+        <!-- Search Input -->
+        <EditText
+            android:id="@+id/searchBar"
+            android:layout_width="match_parent"
+            android:layout_height="54dp"
+            android:layout_marginHorizontal="20dp"
+            android:background="@drawable/bg_search_input"
+            android:drawableStart="@drawable/ic_search"
+            android:drawablePadding="12dp"
+            android:hint="Search roles, companies, skills..."
+            android:importantForAutofill="no"
+            android:inputType="text"
+            android:paddingStart="16dp"
+            android:textSize="14sp" />
+
+        <!-- Floating Filter Section -->
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginTop="12dp">
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clipToPadding="false"
+                android:paddingEnd="60dp"
+                android:scrollbars="none">
+
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/filterChipGroup"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="20dp"
+                    app:singleLine="true"
+                    app:singleSelection="true">
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chipAll"
+                        style="@style/Widget.MaterialComponents.Chip.Choice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="All"
+                        android:textColor="@color/white"
+                        app:chipBackgroundColor="@color/blue_primary"
+                        app:chipCornerRadius="20dp"
+                        app:chipStrokeWidth="0dp" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chipSoftware"
+                        style="@style/Widget.MaterialComponents.Chip.Choice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Software Engineering"
+                        android:textColor="#64748B"
+                        app:chipBackgroundColor="#F1F5F9"
+                        app:chipCornerRadius="20dp"
+                        app:chipStrokeWidth="0dp" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chipDataScience"
+                        style="@style/Widget.MaterialComponents.Chip.Choice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Data Science"
+                        android:textColor="#64748B"
+                        app:chipBackgroundColor="#F1F5F9"
+                        app:chipCornerRadius="20dp"
+                        app:chipStrokeWidth="0dp" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chipDeveloper"
+                        style="@style/Widget.MaterialComponents.Chip.Choice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Mobile Developer"
+                        android:textColor="#64748B"
+                        app:chipBackgroundColor="#F1F5F9"
+                        app:chipCornerRadius="20dp"
+                        app:chipStrokeWidth="0dp" />
+
+                </com.google.android.material.chip.ChipGroup>
+            </HorizontalScrollView>
+
+            <View
+                android:layout_width="80dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="end"
+                android:background="@drawable/white_fade_gradient" />
+
+            <ImageView
+                android:id="@+id/filterIcon"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:layout_gravity="end|center_vertical"
+                android:layout_marginEnd="12dp"
+                android:background="@drawable/filter_icon_bg"
+                android:clickable="true"
+                android:elevation="4dp"
+                android:focusable="true"
+                android:padding="10dp"
+                android:src="@drawable/ic_filter_list"
+                app:tint="@color/blue_primary"
+                tools:ignore="TouchTargetSizeCheck"
+                android:contentDescription="Filter jobs"/>
+        </FrameLayout>
+
+        <!-- RecyclerView Section -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvInternships"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_marginTop="8dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/item_job_card" />
+
+    </LinearLayout>
+
+    <!-- Bottom Navigation -->
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNav"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="#FFFFFF"
+        app:elevation="10dp"
+        app:itemIconTint="@color/nav_item_color"
+        app:itemTextColor="@color/nav_item_color"
+        app:labelVisibilityMode="labeled"
+        app:menu="@menu/bottom_nav_menu" />
+
+</RelativeLayout>

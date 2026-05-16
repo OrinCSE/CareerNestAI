@@ -26,7 +26,7 @@ public class SignUpActivity extends AppCompatActivity {
         ivToggle1.setOnClickListener(v -> {
             if (isPassVisible) {
                 etPass.setTransformationMethod(PasswordTransformationMethod.getInstance());
-                ivToggle1.setImageResource(R.drawable.ic_eye_off);
+                ivToggle1.setImageResource(R.drawable.ic_eye_close);
             } else {
                 etPass.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
                 ivToggle1.setImageResource(R.drawable.ic_eye_on);
@@ -39,7 +39,7 @@ public class SignUpActivity extends AppCompatActivity {
         ivToggle2.setOnClickListener(v -> {
             if (isConfirmPassVisible) {
                 etConfirmPass.setTransformationMethod(PasswordTransformationMethod.getInstance());
-                ivToggle2.setImageResource(R.drawable.ic_eye_off);
+                ivToggle2.setImageResource(R.drawable.ic_eye_close);
             } else {
                 etConfirmPass.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
                 ivToggle2.setImageResource(R.drawable.ic_eye_on);

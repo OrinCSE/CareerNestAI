@@ -12,24 +12,24 @@
         app:tint="#2DAAE1" />
 
     <LinearLayout
-        android:orientation="vertical"
+        android:layout_width="188dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:orientation="vertical">
 
         <TextView
-            android:text="Location"
-            android:textSize="12sp"
+            android:layout_width="152dp"
+            android:layout_height="wrap_content"
+            android:text="Stipend"
             android:textColor="#9CA3AF"
-            android:layout_height="20dp"
-            android:layout_width="20dp" />
+            android:textSize="15sp" />
 
         <TextView
-            android:text="Dhaka, Bangladesh"
-            android:textSize="14sp"
+            android:layout_width="138dp"
+            android:layout_height="wrap_content"
+            android:text="15,000/month"
             android:textColor="#111827"
-            android:layout_height="15dp"
-            android:layout_width="15dp" />
+            android:textSize="16sp" />
     </LinearLayout>
 
 </LinearLayout>

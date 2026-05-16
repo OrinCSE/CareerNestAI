@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg_gradient">
@@ -12,7 +13,8 @@
         android:layout_marginTop="-50dp"
         android:layout_marginEnd="-50dp"
         android:alpha="0.1"
-        android:background="@drawable/circle_shape" />
+        android:background="@drawable/circle_shape"
+        tools:ignore="VisualLintBounds" />
     <View
         android:layout_width="90dp"
         android:layout_height="90dp"
@@ -34,6 +36,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="80dp"
+        android:contentDescription="TODO"
         android:gravity="center"
         android:orientation="vertical">
 
@@ -41,7 +44,8 @@
             android:id="@+id/logo_icon"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:src="@drawable/ic_briefcase_white_circle" />
+            android:src="@drawable/ic_briefcase_white_circle"
+            android:contentDescription="logo"/>
 
         <TextView
             android:id="@+id/brand_name"
@@ -80,13 +84,14 @@
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_marginTop="15dp"
-            android:backgroundTint="#F0E9E9"
+            android:backgroundTint="#C18888"
             android:text="SIGN IN"
             android:textSize="12sp"
-            android:textColor="#920505"
+            android:textColor="#F0EBEB"
             android:textStyle="bold"
             android:background="@drawable/white_solid_button"
-            style="@style/Widget.AppCompat.Button.Borderless"/>
+            style="@style/Widget.AppCompat.Button.Borderless"
+            tools:ignore="VisualLintButtonSize" />
 
         <Button
             android:id="@+id/btn_goto_signup"
@@ -98,7 +103,8 @@
             android:textSize="12sp"
             android:textColor="@android:color/white"
             android:textStyle="bold"
-            style="@style/Widget.AppCompat.Button.Borderless"/>
+            style="@style/Widget.AppCompat.Button.Borderless"
+            tools:ignore="VisualLintButtonSize" />
 
         <TextView
             android:layout_width="wrap_content"

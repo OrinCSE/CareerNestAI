@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- একদম গাঢ় নীল কালার (Dark Navy Blue) যেমনটা স্ক্রিনশটে আছে -->
+    <solid android:color="#0D253F" />
+
+    <!-- বাটনটিকে সুন্দর গোল/রাউন্ডেড করার জন্য ২০ডিপি রেডিয়াস -->
+    <corners android:radius="20dp" />
+
+    <!-- হালকা একটু প্যাডিং যাতে কন্টেন্ট একদম বর্ডারের সাথে না লেগে থাকে -->
+    <padding
+        android:left="16dp"
+        android:top="16dp"
+        android:right="16dp"
+        android:bottom="16dp" />
+
+</shape>

@@ -5,7 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.ImageView; // ImageView ইম্পোর্ট করতে হবে
+import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -21,7 +21,7 @@ public class BrowseFragment extends Fragment {
     private Button btnSmart, btnAll;
     private ChipGroup filterChipGroup;
     private RecyclerView rvInternships;
-    private ImageView filterIcon; // ফিল্টার আইকন ডিক্লেয়ার করলাম
+    private ImageView filterIcon;
 
     @Nullable
     @Override
@@ -34,18 +34,16 @@ public class BrowseFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        // ১. ভিউগুলো খুঁজে বের করা (Initialize Views)
         searchBar = view.findViewById(R.id.searchBar);
         btnSmart = view.findViewById(R.id.btnSmart);
         btnAll = view.findViewById(R.id.btnAll);
         filterChipGroup = view.findViewById(R.id.filterChipGroup);
         rvInternships = view.findViewById(R.id.rvInternships);
-        filterIcon = view.findViewById(R.id.filterIcon); // ফিল্টার আইকন ইনিশিয়ালাইজ
+        filterIcon = view.findViewById(R.id.filterIcon);
 
-        // ২. RecyclerView সেটআপ করা
+
         rvInternships.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        // ৩. Smart/All টগল বাটনের লজিক
         btnSmart.setOnClickListener(v -> {
             btnSmart.setBackgroundResource(R.drawable.selected_toggle_btn);
             btnAll.setBackgroundResource(android.R.color.transparent);
@@ -56,7 +54,6 @@ public class BrowseFragment extends Fragment {
             btnSmart.setBackgroundResource(android.R.color.transparent);
         });
 
-        // ৪. ক্যাটাগরি চিপস ফিল্টারিং লজিক (Horizontal Scroll)
         filterChipGroup.setOnCheckedStateChangeListener((group, checkedIds) -> {
             if (!checkedIds.isEmpty()) {
                 int checkedId = checkedIds.get(0);
@@ -66,11 +63,9 @@ public class BrowseFragment extends Fragment {
             }
         });
 
-        // ৫. আপনার নতুন ফিল্টার প্যানেল (BottomSheet) এর লজিক
         filterIcon.setOnClickListener(v -> {
             FilterBottomSheet sheet = new FilterBottomSheet();
 
-            // লিসেনার সেট করা (BottomSheet থেকে ডাটা এখানে আসবে)
             sheet.setFilterListener((type, difficulty, sortBy) -> {
                 updateJobList(type, difficulty, sortBy);
             });

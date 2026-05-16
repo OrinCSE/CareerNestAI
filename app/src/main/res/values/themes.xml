@@ -4,7 +4,7 @@
 
     <style name="Theme.CareerNestR" parent="Base.Theme.CareerNestR" />
 
-    <style name="CircleImage">
+    <style name="CircleImage" parent="ShapeAppearance.Material3.SmallComponent">
         <item name="cornerSize">50%</item>
     </style>
 
