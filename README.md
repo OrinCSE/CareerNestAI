@@ -29,7 +29,7 @@ The dynamic central panel displays active recruitment progress analytics, couple
 
 | Dashboard Hub | Active Document Uploader |
 | :---: | :---: |
-| <img src="https://github.com/OrinCSE/CareerNestAI/blob/66bf8379b8baf6f490e6c5e78a348032a67a93bd/Screenshot%202026-04-22%20195952.png" width="280" alt="Dashboard Hub"/> | <img src="https://raw.githubusercontent.com/placeholder-images/uploader.png" width="280" alt="Active Document Uploader"/> |
+| <img src="https://github.com/OrinCSE/CareerNestAI/blob/66bf8379b8baf6f490e6c5e78a348032a67a93bd/Screenshot%202026-04-22%20195952.png" width="280" alt="Dashboard Hub"/> | <img src="https://github.com/OrinCSE/CareerNestAI/blob/a48d0137578b557e67d095957877a655b7e97014/Screenshot%202026-05-20%20210517.png" width="280" alt="Active Document Uploader"/> |
 
 ### 2. Tailored Vacancy Discovery & Advanced Filtering Subsystem
 The multi-tier matching grid presents continuous opportunity card listings integrated directly with localized constraints to separate complex entry levels on the fly.
