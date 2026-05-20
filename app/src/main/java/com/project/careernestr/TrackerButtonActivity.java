@@ -20,7 +20,7 @@ public class TrackerButtonActivity extends AppCompatActivity {
         bottomNav.setOnItemSelectedListener(item -> {
             int itemId = item.getItemId();
             if (itemId == R.id.nav_home) {
-                startActivity(new Intent(this, HomeActivity.class));
+                startActivity(new Intent(this, Activity_dashboard.class));
                 overridePendingTransition(0, 0);
                 return true;
             } else if (itemId == R.id.nav_browse) {

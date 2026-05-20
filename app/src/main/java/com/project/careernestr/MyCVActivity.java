@@ -21,7 +21,7 @@ public class MyCVActivity extends AppCompatActivity {
                 overridePendingTransition(0, 0);
                 return true;
             } else if (itemId == R.id.nav_cv) {
-                startActivity(new Intent(MyCVActivity.this, HomeActivity.class));
+                startActivity(new Intent(MyCVActivity.this, Activity_dashboard.class));
                 overridePendingTransition(0, 0);
                 return true;
             } else if (itemId == R.id.nav_tracker) {

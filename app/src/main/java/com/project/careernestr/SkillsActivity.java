@@ -21,7 +21,7 @@ public class SkillsActivity extends AppCompatActivity {
             int itemId = item.getItemId();
 
             if (itemId == R.id.nav_home) {
-                startActivity(new Intent(SkillsActivity.this, HomeActivity.class));
+                startActivity(new Intent(SkillsActivity.this, Activity_dashboard.class));
                 overridePendingTransition(0, 0);
                 return true;
             } else if (itemId == R.id.nav_browse) {

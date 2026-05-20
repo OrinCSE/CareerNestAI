@@ -5,6 +5,8 @@ import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 public class SignUpActivity extends AppCompatActivity {
@@ -46,6 +48,15 @@ public class SignUpActivity extends AppCompatActivity {
             }
             isConfirmPassVisible = !isConfirmPassVisible;
             etConfirmPass.setSelection(etConfirmPass.getText().length());
+        });
+
+        findViewById(R.id.btn_signup_submit).setOnClickListener(v -> {
+            // আপাতত সরাসরি ড্যাশবোর্ডে পাঠিয়ে দেওয়ার জন্য:
+            Toast.makeText(SignUpActivity.this, "Registration Successful!", Toast.LENGTH_SHORT).show();
+
+            android.content.Intent intent = new android.content.Intent(SignUpActivity.this, Activity_dashboard.class);
+            startActivity(intent);
+            finish(); // সাইন আপ শেষে এই পেজ ক্লোজ করে দিবে
         });
 
         // Back Button

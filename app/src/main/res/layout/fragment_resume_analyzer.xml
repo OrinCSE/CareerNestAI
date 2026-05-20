@@ -8,9 +8,6 @@
     android:layout_height="match_parent"
     android:background="#F5F7FB">
 
-    <!-- ========================= -->
-    <!-- MAIN SCROLLABLE CONTENT -->
-    <!-- ========================= -->
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -25,9 +22,6 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <!-- ========================= -->
-            <!-- HEADER -->
-            <!-- ========================= -->
 
             <TextView
                 android:layout_width="wrap_content"
@@ -457,18 +451,5 @@
         </LinearLayout>
 
     </androidx.core.widget.NestedScrollView>
-
-    <!-- ========================= -->
-    <!-- BOTTOM NAVIGATION -->
-    <!-- ========================= -->
-
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottomNavigation"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:background="@android:color/white"
-        app:labelVisibilityMode="labeled"
-        app:menu="@menu/bottom_nav_menu"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

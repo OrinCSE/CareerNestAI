@@ -1,12 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:padding="20dp"
-    android:background="@drawable/bottom_sheet_bg">
+    android:background="@android:color/white">
 
-    <!-- ড্র্যাগ হ্যান্ডেল -->
     <View
         android:layout_width="40dp"
         android:layout_height="4dp"
@@ -26,26 +26,30 @@
         android:id="@+id/typeGroup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp">
-        <com.google.android.material.chip.Chip style="@style/Widget.MaterialComponents.Chip.Choice"
+        android:layout_marginTop="8dp"
+        app:singleSelection="true">
+        <com.google.android.material.chip.Chip
+            style="@style/Widget.MaterialComponents.Chip.Choice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="remote" />
-        <com.google.android.material.chip.Chip style="@style/Widget.MaterialComponents.Chip.Choice"
+        <com.google.android.material.chip.Chip
+            style="@style/Widget.MaterialComponents.Chip.Choice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="onsite" />
-        <com.google.android.material.chip.Chip style="@style/Widget.MaterialComponents.Chip.Choice"
+        <com.google.android.material.chip.Chip
+            style="@style/Widget.MaterialComponents.Chip.Choice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="hybrid" />
     </com.google.android.material.chip.ChipGroup>
 
-    <!-- একইভাবে DIFFICULTY এবং SORT BY সেকশনগুলো যোগ করুন -->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="DIFFICULTY"
+        android:layout_marginTop="16dp"
         android:textSize="12sp"
         android:textStyle="bold"
         android:textColor="#101010"/>
@@ -54,24 +58,30 @@
         android:id="@+id/difficultyGroup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp">
-        <com.google.android.material.chip.Chip style="@style/Widget.MaterialComponents.Chip.Choice"
+        android:layout_marginTop="8dp"
+        app:singleSelection="true">
+        <com.google.android.material.chip.Chip
+            style="@style/Widget.MaterialComponents.Chip.Choice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Beginner" />
-        <com.google.android.material.chip.Chip style="@style/Widget.MaterialComponents.Chip.Choice"
+        <com.google.android.material.chip.Chip
+            style="@style/Widget.MaterialComponents.Chip.Choice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Busy" />
-        <com.google.android.material.chip.Chip style="@style/Widget.MaterialComponents.Chip.Choice"
+        <com.google.android.material.chip.Chip
+            style="@style/Widget.MaterialComponents.Chip.Choice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Med" />
-        <com.google.android.material.chip.Chip style="@style/Widget.MaterialComponents.Chip.Choice"
+        <com.google.android.material.chip.Chip
+            style="@style/Widget.MaterialComponents.Chip.Choice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Hard" />
-        <com.google.android.material.chip.Chip style="@style/Widget.MaterialComponents.Chip.Choice"
+        <com.google.android.material.chip.Chip
+            style="@style/Widget.MaterialComponents.Chip.Choice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Expert" />
@@ -81,6 +91,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="SORT BY"
+        android:layout_marginTop="16dp"
         android:textSize="12sp"
         android:textStyle="bold"
         android:textColor="#121212"/>
@@ -89,16 +100,20 @@
         android:id="@+id/sortByGroup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp">
-        <com.google.android.material.chip.Chip style="@style/Widget.MaterialComponents.Chip.Choice"
+        android:layout_marginTop="8dp"
+        app:singleSelection="true">
+        <com.google.android.material.chip.Chip
+            style="@style/Widget.MaterialComponents.Chip.Choice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Best Match" />
-        <com.google.android.material.chip.Chip style="@style/Widget.MaterialComponents.Chip.Choice"
+        <com.google.android.material.chip.Chip
+            style="@style/Widget.MaterialComponents.Chip.Choice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Deadline" />
-        <com.google.android.material.chip.Chip style="@style/Widget.MaterialComponents.Chip.Choice"
+        <com.google.android.material.chip.Chip
+            style="@style/Widget.MaterialComponents.Chip.Choice"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Difficulty" />
@@ -111,5 +126,4 @@
         android:layout_marginTop="24dp"
         android:text="Apply Filters"
         app:cornerRadius="12dp"
-        android:backgroundTint="@color/crimson_primary"/>
-</LinearLayout>
+        android:backgroundTint="@color/blue_primary"/> </LinearLayout>

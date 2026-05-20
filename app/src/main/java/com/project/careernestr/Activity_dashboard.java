@@ -23,6 +23,7 @@ import androidx.activity.OnBackPressedCallback;
 
 public class Activity_dashboard extends AppCompatActivity {
 
+    private androidx.activity.result.ActivityResultLauncher<Intent> filePickerLauncher;
     BottomNavigationView bottomNav;
     ImageView profileBtn, menuBtn;
     DrawerLayout drawerLayout;
@@ -36,6 +37,32 @@ public class Activity_dashboard extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
+
+        // ওল্ড ফাইল পিকার লাঞ্চারটি যেভাবে ছিল সেভাবেই রাখা হলো (কোনো ক্র্যাশ এভোয়েড করার জন্য)
+        filePickerLauncher = registerForActivityResult(
+                new androidx.activity.result.contract.ActivityResultContracts.StartActivityForResult(),
+                result -> {
+                    if (result.getResultCode() == android.app.Activity.RESULT_OK && result.getData() != null) {
+                        android.net.Uri fileUri = result.getData().getData();
+                        if (fileUri != null) {
+                            try {
+                                java.io.InputStream inputStream = getContentResolver().openInputStream(fileUri);
+                                if (inputStream != null) {
+                                    byte[] fileData = new byte[inputStream.available()];
+                                    inputStream.read(fileData);
+                                    inputStream.close();
+                                    String fileName = "resume_" + System.currentTimeMillis() + ".pdf";
+                                    Toast.makeText(Activity_dashboard.this, "Uploading file, please wait...", Toast.LENGTH_SHORT).show();
+                                    SupabaseHelper.uploadResume(fileName, fileData, Activity_dashboard.this, null);
+                                }
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                                Toast.makeText(Activity_dashboard.this, "Failed to read file data", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    }
+                }
+        );
 
         // Initialize views
         drawerLayout = findViewById(R.id.drawer_layout);
@@ -59,10 +86,6 @@ public class Activity_dashboard extends AppCompatActivity {
         if (profileBtn != null) {
             profileBtn.setOnClickListener(v -> {
                 startActivity(new Intent(this, ProfileActivity.class));
-                SupabaseHelper.insertUser(
-                        "Orin",
-                        "orin@gmail.com"
-                );
             });
         }
 
@@ -101,10 +124,12 @@ public class Activity_dashboard extends AppCompatActivity {
             );
         }
 
+        // 🚀 ফিক্সড লজিক: এখন "Upload Your Resume" বক্সে ক্লিক করলে সরাসরি ফাইল আপলোড ইন্টারফেসে নিয়ে যাবে
         if (uploadBtn != null) {
-            uploadBtn.setOnClickListener(v ->
-                    Toast.makeText(this, "Upload Resume Clicked", Toast.LENGTH_SHORT).show()
-            );
+            uploadBtn.setOnClickListener(v -> {
+                Intent intent = new Intent(Activity_dashboard.this, ResumeUploadActivity.class);
+                startActivity(intent);
+            });
         }
 
         if (applyBtn != null) {
@@ -113,67 +138,65 @@ public class Activity_dashboard extends AppCompatActivity {
             );
         }
 
-        // RecyclerView setup
+        // Job Recycler Setup
         RecyclerView recyclerView = findViewById(R.id.recyclerViewJobs);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        if (recyclerView != null) {
+            recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        List<JobModel> jobList = new ArrayList<>();
-        jobList.add(new JobModel("Mobile App Developer Intern", "Pathao", "BDT 15,000/month"));
-        jobList.add(new JobModel("Software Engineer Intern", "Brain Station 23", "BDT 10,000/month"));
-        jobList.add(new JobModel("Frontend Developer Intern", "Tiger IT", "BDT 12,000/month"));
+            List<JobModel> jobList = new ArrayList<>();
+            jobList.add(new JobModel("Mobile App Developer Intern", "Pathao", "Dhaka, Bangladesh", "BDT 15,000/month", "50", "onsite", "Intermediate"));
+            jobList.add(new JobModel("Software Engineer Intern", "Brain Station 23", "Dhaka, Bangladesh", "BDT 10,000/month", "50", "onsite", "Hard"));
+            jobList.add(new JobModel("Frontend Developer Intern", "Tiger IT", "Dhaka, Bangladesh", "BDT 12,000/month", "50", "onsite", "Hard"));
 
-        JobAdapter adapter = new JobAdapter(this, jobList);
-        recyclerView.setAdapter(adapter);
+            JobAdapter adapter = new JobAdapter(this, jobList);
+            recyclerView.setAdapter(adapter);
+        }
 
-        // Bottom navigation
-        BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNav);
+        // Bottom navigation handling
+        if (bottomNav != null) {
+            bottomNav.setSelectedItemId(R.id.nav_home);
 
-// ড্যাশবোর্ডে থাকা অবস্থায় Home বাটনটি সিলেক্টেড দেখাবে
-        bottomNavigationView.setSelectedItemId(R.id.nav_home);
+            bottomNav.setOnItemSelectedListener(item -> {
+                int id = item.getItemId();
 
-        bottomNavigationView.setOnItemSelectedListener(item -> {
-            int id = item.getItemId();
+                if (id == R.id.nav_home) {
+                    return true;
+                } else if (id == R.id.nav_browse) {
+                    startActivity(new Intent(Activity_dashboard.this, BrowseActivity.class));
+                    overridePendingTransition(0, 0);
+                    return true;
+                } else if (id == R.id.nav_cv) {
+                    startActivity(new Intent(Activity_dashboard.this, MyCVActivity.class));
+                    overridePendingTransition(0, 0);
+                    return true;
+                } else if (id == R.id.nav_tracker) {
+                    startActivity(new Intent(Activity_dashboard.this, TrackerActivity.class));
+                    overridePendingTransition(0, 0);
+                    return true;
+                } else if (id == R.id.nav_skills) {
+                    startActivity(new Intent(Activity_dashboard.this, SkillsActivity.class));
+                    overridePendingTransition(0, 0);
+                    return true;
+                }
+                return false;
+            });
+        }
 
-            if (id == R.id.nav_home) {
-                return true;
-            } else if (id == R.id.nav_browse) {
-                startActivity(new Intent(Activity_dashboard.this, BrowseActivity.class));
-                overridePendingTransition(0, 0); // পেজ চেঞ্জ হওয়ার সময় জিরকি অ্যানিমেশন বন্ধ করার জন্য
-                return true;
-            } else if (id == R.id.nav_cv) {
-                startActivity(new Intent(Activity_dashboard.this, MyCVActivity.class));
-                overridePendingTransition(0, 0);
-                return true;
-            } else if (id == R.id.nav_tracker) {
-                startActivity(new Intent(Activity_dashboard.this, TrackerActivity.class));
-                overridePendingTransition(0, 0);
-                return true;
-            } else if (id == R.id.nav_skills) {
-                startActivity(new Intent(Activity_dashboard.this, SkillsActivity.class));
-                overridePendingTransition(0, 0);
-                return true;
-            }
-            return false;
-        });
+        // Back button filter
         getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
             @Override
             public void handleOnBackPressed() {
-
                 if (drawerLayout != null && drawerLayout.isDrawerOpen(GravityCompat.START)) {
                     drawerLayout.closeDrawer(GravityCompat.START);
                 } else {
-                    finish();
+                    finishAffinity();
                 }
             }
         });
     }
 
-    // Navigation helper
     private void navigateTo(Class<?> targetActivity) {
         startActivity(new Intent(this, targetActivity));
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
     }
-
-    // Back press fix (Drawer handling)
-
 }

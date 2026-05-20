@@ -20,7 +20,7 @@ public class TrackerActivity extends AppCompatActivity {
             int itemId = item.getItemId();
 
             if (itemId == R.id.nav_home) {
-                startActivity(new Intent(TrackerActivity.this, HomeActivity.class));
+                startActivity(new Intent(TrackerActivity.this, Activity_dashboard.class));
                 overridePendingTransition(0, 0); //
                 return true;
             } else if (itemId == R.id.nav_browse) {

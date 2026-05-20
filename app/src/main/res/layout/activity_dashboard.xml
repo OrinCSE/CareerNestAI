@@ -42,6 +42,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Find Your"
+                    android:textColor="#161515"
                     android:textSize="24sp"
                     android:textStyle="bold" />
 

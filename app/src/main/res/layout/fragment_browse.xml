@@ -6,15 +6,13 @@
     android:layout_height="match_parent"
     android:background="#F8F8F8">
 
-    <!-- Main Content -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/bottomNav"
-        android:background="#FFFFFF"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="#FFFFFF">
 
-        <!-- Header Section -->
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -65,7 +63,6 @@
             </LinearLayout>
         </RelativeLayout>
 
-        <!-- Search Input -->
         <EditText
             android:id="@+id/searchBar"
             android:layout_width="match_parent"
@@ -80,7 +77,6 @@
             android:paddingStart="16dp"
             android:textSize="14sp" />
 
-        <!-- Floating Filter Section -->
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="60dp"
@@ -90,7 +86,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:clipToPadding="false"
-                android:paddingEnd="60dp"
+                android:paddingEnd="65dp"
                 android:scrollbars="none">
 
                 <com.google.android.material.chip.ChipGroup
@@ -148,52 +144,32 @@
                 </com.google.android.material.chip.ChipGroup>
             </HorizontalScrollView>
 
-            <View
-                android:layout_width="80dp"
-                android:layout_height="match_parent"
-                android:layout_gravity="end"
-                android:background="@drawable/white_fade_gradient" />
-
             <ImageView
                 android:id="@+id/filterIcon"
                 android:layout_width="44dp"
                 android:layout_height="44dp"
                 android:layout_gravity="end|center_vertical"
-                android:layout_marginEnd="12dp"
+                android:layout_marginEnd="20dp"
                 android:background="@drawable/filter_icon_bg"
                 android:clickable="true"
-                android:elevation="4dp"
+                android:elevation="10dp"
                 android:focusable="true"
                 android:padding="10dp"
                 android:src="@drawable/ic_filter_list"
                 app:tint="@color/blue_primary"
                 tools:ignore="TouchTargetSizeCheck"
+                android:translationZ="20dp"
                 android:contentDescription="Filter jobs"/>
         </FrameLayout>
 
-        <!-- RecyclerView Section -->
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvInternships"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
             android:layout_marginTop="8dp"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:listitem="@layout/item_job_card" />
 
     </LinearLayout>
-
-    <!-- Bottom Navigation -->
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottomNav"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:background="#FFFFFF"
-        app:elevation="10dp"
-        app:itemIconTint="@color/nav_item_color"
-        app:itemTextColor="@color/nav_item_color"
-        app:labelVisibilityMode="labeled"
-        app:menu="@menu/bottom_nav_menu" />
 
 </RelativeLayout>

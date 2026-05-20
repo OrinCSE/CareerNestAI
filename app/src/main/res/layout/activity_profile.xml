@@ -41,7 +41,7 @@
                 <Button
                     android:id="@+id/saveProfile"
                     android:text="Save Profile"
-                    android:backgroundTint="#972121"
+                    android:backgroundTint="@color/blue_primary"
                     android:textColor="#FFFFFF"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>

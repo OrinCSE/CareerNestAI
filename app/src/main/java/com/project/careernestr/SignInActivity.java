@@ -114,8 +114,8 @@ public class SignInActivity extends AppCompatActivity {
                 return;
             }
 
-            if (password.length() < 6) {
-                passwordInput.setError("Password must be at least 6 characters");
+            if (password.length() < 4) {
+                passwordInput.setError("Password must be at least 4 characters");
                 passwordInput.requestFocus();
                 return;
             }

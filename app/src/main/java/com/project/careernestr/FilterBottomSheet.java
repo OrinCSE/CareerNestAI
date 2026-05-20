@@ -1,61 +1,72 @@
-package com.project.careernestr; // আপনার প্রজেক্টের সঠিক প্যাকেজ নাম দিন
+package com.project.careernestr;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
+import com.google.android.material.button.MaterialButton;
+import java.util.List;
 
 public class FilterBottomSheet extends BottomSheetDialogFragment {
 
-    // ইন্টারফেসটি ক্লাসের ভেতরেই ডিফাইন করুন যাতে কনফ্লিক্ট না হয়
-    public interface FilterListener {
-        void onFiltersApplied(String type, String difficulty, String sortBy);
+    public interface OnFilterAppliedListener {
+        void onFilterApplied(String type, String difficulty, String sortBy);
     }
 
+    private OnFilterAppliedListener filterListener;
     private ChipGroup typeGroup, difficultyGroup, sortByGroup;
-    private Button btnApply;
-    private FilterListener listener;
+    private MaterialButton btnApply;
 
-    public void setFilterListener(FilterListener listener) {
-        this.listener = listener;
+    public void setFilterListener(OnFilterAppliedListener listener) {
+        this.filterListener = listener;
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.layout_filter_sheet, container, false);
-
-        typeGroup = v.findViewById(R.id.typeGroup);
-        difficultyGroup = v.findViewById(R.id.difficultyGroup);
-        sortByGroup = v.findViewById(R.id.sortByGroup);
-        btnApply = v.findViewById(R.id.btnApply);
-
-        btnApply.setOnClickListener(view -> {
-            String selectedType = getSelectedChipText(typeGroup);
-            String selectedDifficulty = getSelectedChipText(difficultyGroup);
-            String selectedSort = getSelectedChipText(sortByGroup);
-
-            if (listener != null) {
-                listener.onFiltersApplied(selectedType, selectedDifficulty, selectedSort);
-            }
-            dismiss();
-        });
-
-        return v;
+        // 🚀 এক্সএমএল ফাইলের সঠিক নাম লিংক করা হলো
+        return inflater.inflate(R.layout.layout_filter_sheet, container, false);
     }
 
-    private String getSelectedChipText(ChipGroup group) {
-        int chipId = group.getCheckedChipId();
-        if (chipId != View.NO_ID) {
-            Chip chip = group.findViewById(chipId);
-            return chip.getText().toString();
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        // ভিউ কাস্টিং ও আইডি লিংকিং
+        typeGroup = view.findViewById(R.id.typeGroup);
+        difficultyGroup = view.findViewById(R.id.difficultyGroup);
+        sortByGroup = view.findViewById(R.id.sortByGroup);
+        btnApply = view.findViewById(R.id.btnApply);
+
+        if (btnApply != null) {
+            btnApply.setOnClickListener(v -> {
+                String selectedType = getSelectedChipText(typeGroup);
+                String selectedDifficulty = getSelectedChipText(difficultyGroup);
+                String selectedSortBy = getSelectedChipText(sortByGroup);
+
+                if (filterListener != null) {
+                    filterListener.onFilterApplied(selectedType, selectedDifficulty, selectedSortBy);
+                }
+                dismiss();
+            });
         }
-        return "All";
+    }
+
+    private String getSelectedChipText(ChipGroup chipGroup) {
+        if (chipGroup == null) return "";
+        List<Integer> checkedIds = chipGroup.getCheckedChipIds();
+        if (checkedIds != null && !checkedIds.isEmpty()) {
+            Chip chip = chipGroup.findViewById(checkedIds.get(0));
+            if (chip != null) {
+                return chip.getText().toString();
+            }
+        }
+        return "";
     }
 }
